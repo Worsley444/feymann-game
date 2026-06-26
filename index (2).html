@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vibe Coding 费曼闪卡教练</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#coach" aria-label="Vibe Coding 费曼闪卡教练">
+        <span class="brand-mark">VC</span>
+        <span>费曼闪卡教练</span>
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="#coach">训练</a>
+        <a href="#map">地图</a>
+        <a href="#faq">问题库</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="coach" class="coach-shell" aria-labelledby="coach-title">
+        <div class="coach-main">
+          <div class="hero-copy">
+            <span class="kicker">Feynman Loop</span>
+            <h1 id="coach-title">你先问，我讲清；我再问，你讲回。</h1>
+            <p>
+              这个训练器面向刚接触 vibe coding 的人：每次围绕一个问题，用“简单解释、类比、约束、例子、反问评估”的节奏，把模糊经验变成能复述的方法。
+            </p>
+          </div>
+
+          <div class="trainer">
+            <section class="ask-panel" aria-labelledby="ask-title">
+              <div class="panel-head">
+                <div>
+                  <span class="small-label">第 1 步</span>
+                  <h2 id="ask-title">先问一个你想弄懂的问题</h2>
+                </div>
+                <button id="randomBtn" class="icon-button" type="button" title="随机抽卡" aria-label="随机抽卡">↻</button>
+              </div>
+              <textarea id="userQuestion" rows="4" placeholder="例如：vibe coding 和普通写代码有什么区别？约束到底怎么写？我不会编程能做网页吗？"></textarea>
+              <div class="actions">
+                <button id="askBtn" class="primary-btn" type="button">让我回答</button>
+                <button id="clearBtn" class="secondary-btn" type="button">清空</button>
+              </div>
+              <div id="coachAnswer" class="answer-box" aria-live="polite">
+                你可以直接输入自然语言。系统会匹配最接近的闪卡主题，给出新手版解释，再进入反问训练。
+              </div>
+            </section>
+
+            <section class="teach-panel" aria-labelledby="teach-title">
+              <div class="panel-head">
+                <div>
+                  <span class="small-label">第 2 步</span>
+                  <h2 id="teach-title">现在换你用自己的话讲</h2>
+                </div>
+                <span id="roundBadge" class="round-badge">0 / 10 close</span>
+              </div>
+              <div id="coachPrompt" class="prompt-card">
+                等你先提问后，我会给你一个小白也能听懂的反问。
+              </div>
+              <textarea id="learnerAnswer" rows="5" placeholder="用自己的话回答。越像讲给朋友听，分数越高。"></textarea>
+              <div class="actions">
+                <button id="gradeBtn" class="primary-btn" type="button">评估我的答案</button>
+                <button id="nextCloseBtn" class="secondary-btn" type="button">深入一轮</button>
+              </div>
+              <div id="evaluation" class="evaluation" aria-live="polite">
+                评分会看四件事：是否简单、是否有例子、是否提到约束、是否知道下一步怎么做。
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <aside class="score-panel" aria-labelledby="score-title">
+          <h2 id="score-title">学习仪表</h2>
+          <div class="score-ring">
+            <canvas id="scoreCanvas" width="260" height="260" aria-label="掌握度可视化"></canvas>
+            <strong id="masteryScore">0</strong>
+            <span>掌握度</span>
+          </div>
+          <div class="meter">
+            <span>解释清晰</span>
+            <strong id="clarityScore">0</strong>
+          </div>
+          <div class="meter">
+            <span>约束意识</span>
+            <strong id="constraintScore">0</strong>
+          </div>
+          <div class="meter">
+            <span>深入轮数</span>
+            <strong id="depthScore">0</strong>
+          </div>
+          <div class="hint-box">
+            目标不是背定义，而是能把一个问题讲成：是什么、为什么、怎么做、怎么检查。
+          </div>
+        </aside>
+      </section>
+
+      <section class="explain-band" aria-labelledby="tools-title">
+        <div>
+          <span class="kicker">Loop 是核心节奏</span>
+          <h2 id="tools-title">Vibe coding 不是一次问对，而是一轮一轮逼近。</h2>
+        </div>
+        <div class="tool-grid">
+          <article>
+            <h3>① 意图 → 生成</h3>
+            <p>写清楚目标和约束，让 AI 生成第一版。不要追求一次完美，先跑起来再说。</p>
+          </article>
+          <article>
+            <h3>② 运行 → 观察</h3>
+            <p>每次改动后立刻跑起来看结果。不跑就反馈，等于蒙眼开车——你不知道 AI 改对了没有。</p>
+          </article>
+          <article>
+            <h3>③ 反馈 → 再生成</h3>
+            <p>说出观察到的问题 + 希望的变化 + 保留什么。一次只改一件事，这样你知道哪里有效。</p>
+          </article>
+          <article>
+            <h3>④ 保存 checkpoint</h3>
+            <p>每次”现在是好的”就存一版。Git commit 或复制文件都行。下一步改错了，你还能退回来。</p>
+          </article>
+          <article>
+            <h3>Loop 卡住了怎么办</h3>
+            <p>改了 3 次还没进展？停下来重新描述：我现在有什么、我想得到什么、它们之间差了什么。</p>
+          </article>
+          <article>
+            <h3>工具是配角，loop 是主角</h3>
+            <p>Codex、VS Code、PowerShell 各有分工，但它们都服务于同一件事：让 loop 转得更快、更准。</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="map" class="map-band" aria-labelledby="map-title">
+        <div class="section-heading">
+          <span class="kicker">Coverage Map</span>
+          <h2 id="map-title">覆盖初学者核心问题的主题地图</h2>
+          <p>按主题分组的闪卡，覆盖 Loop 方法论、提示词、约束、调试、版本管理、AI 边界、学习方法等。点任意卡片可直接开始训练。</p>
+        </div>
+        <div id="topicGrid" class="topic-grid"></div>
+      </section>
+
+      <section id="faq" class="faq-band" aria-labelledby="faq-title">
+        <div class="section-heading">
+          <span class="kicker">FAQ Library</span>
+          <h2 id="faq-title">常见问题库</h2>
+        </div>
+        <div id="faqList" class="faq-list"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
